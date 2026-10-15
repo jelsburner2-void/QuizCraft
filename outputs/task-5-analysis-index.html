@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#F7F2FF">
+  <meta name="description" content="Turn class material into clear study notes and practice quizzes.">
+  <title>QuizCraft | Study smarter</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <header class="site-header" id="home">
+    <a class="brand" href="#home" aria-label="QuizCraft home"><span class="brand-mark" aria-hidden="true">q</span>QuizCraft</a>
+    <nav class="main-nav" aria-label="Main navigation"><a href="#workspace">Study desk</a><a href="#progress">My progress</a></nav>
+    <span class="local-badge"><span aria-hidden="true"></span> Private study space</span>
+  </header>
+  <main class="page-shell">
+    <section class="welcome" aria-labelledby="welcome-title">
+      <div class="welcome-copy"><p class="eyebrow">A calmer way to study</p><h1 id="welcome-title">Make your next<br class="desktop-break"> study session count.</h1><p>Turn lesson material into helpful notes, then see what you remember.</p></div>
+      <div class="welcome-art" aria-hidden="true"><span class="art-orbit orbit-one"></span><span class="art-orbit orbit-two"></span><span class="art-spark spark-one">✦</span><span class="art-spark spark-two">✧</span><div class="art-note"><span class="note-line line-long"></span><span class="note-line"></span><span class="note-line line-short"></span><span class="note-dot">✓</span></div></div>
+    </section>
+    <section class="overview" aria-label="Study overview">
+      <article class="overview-item"><span class="overview-icon icon-purple" aria-hidden="true">✳</span><div><p>Quizzes completed</p><strong id="quiz-total">0</strong></div></article>
+      <article class="overview-item"><span class="overview-icon icon-green" aria-hidden="true">↗</span><div><p>Average score</p><strong id="average-score">—</strong></div></article>
+      <article class="overview-item"><span class="overview-icon icon-coral" aria-hidden="true">↺</span><div><p>Topics to revisit</p><strong id="review-total">0</strong></div></article>
+    </section>
+    <section class="workspace" id="workspace" aria-labelledby="workspace-title">
+      <div class="section-heading"><div><p class="eyebrow">Your study desk</p><h2 id="workspace-title">From lesson to learning</h2></div><p class="section-note">Your material stays in this browser.</p></div>
+      <div class="work-grid">
+        <article class="panel notes-panel" aria-labelledby="notes-title">
+          <header class="panel-header"><span class="step-number">01</span><div><h3 id="notes-title">Smart notes</h3><p>Pull the main ideas and key terms from a lesson.</p></div></header>
+          <div class="panel-content">
+            <label class="field-label" for="lesson-text">Paste your lesson material</label>
+            <textarea id="lesson-text" class="lesson-input" placeholder="Paste notes, a reading excerpt, or lecture material here…" aria-describedby="lesson-hint word-count"></textarea>
+            <div class="input-meta"><span id="lesson-hint">For best results, add a few complete sentences.</span><span id="word-count" aria-live="polite">0 words</span></div>
+            <div class="upload-line"><label class="upload-control" for="file-upload"><span aria-hidden="true">＋</span> Upload .txt or .md</label><span id="file-name" class="file-name">No file selected</span><input id="file-upload" class="visually-hidden" type="file" accept=".txt,.md,text/plain,text/markdown"></div>
+            <button class="button button-primary" id="generate-notes" type="button">Generate study notes</button>
+            <div class="generated-notes" id="notes-output" aria-live="polite" hidden></div>
+          </div>
+        </article>
+        <article class="panel quiz-panel" id="quiz-panel" aria-labelledby="quiz-title">
+          <header class="panel-header"><span class="step-number step-lavender">02</span><div class="quiz-heading"><h3 id="quiz-title">Practice quiz</h3><p>Check your recall, one question at a time.</p></div></header>
+          <div class="panel-content quiz-content">
+            <div class="quiz-intro" id="quiz-intro"><div class="quiz-mark" aria-hidden="true">?</div><p>Add lesson material to build a short quiz from its key ideas.</p><button class="button button-primary" id="start-quiz" type="button" disabled>Generate a quiz</button></div>
+            <section id="quiz-question-view" class="question-view" aria-label="Quiz question" hidden>
+              <div class="question-meta"><span id="question-number">Question 1 of 5</span><span id="quiz-title-source">Study session</span></div>
+              <div class="progress-track" role="progressbar" aria-label="Quiz progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><span id="progress-fill"></span></div>
+              <h4 id="question-prompt" tabindex="-1"></h4><div class="answer-list" id="answer-list"></div>
+              <p class="answer-feedback" id="answer-feedback" aria-live="polite"></p>
+              <button class="button button-primary button-full" id="next-question" type="button" disabled>Choose an answer</button>
+            </section>
+            <section id="quiz-result" class="quiz-result" aria-live="polite" hidden></section>
+          </div>
+        </article>
+      </div>
+    </section>
+    <section class="progress-section" id="progress" aria-labelledby="progress-title">
+      <div class="section-heading"><div><p class="eyebrow">Small steps add up</p><h2 id="progress-title">Your progress</h2></div><p class="section-note">A little review today goes a long way.</p></div>
+      <div class="progress-grid">
+        <article class="panel history-panel" aria-labelledby="history-title"><header class="panel-header compact-header"><div><h3 id="history-title">Recent scores</h3><p>Your latest practice sessions.</p></div></header><div class="history-list" id="history-list" aria-live="polite"></div></article>
+        <article class="panel review-panel" aria-labelledby="review-title"><header class="panel-header compact-header"><div><h3 id="review-title">Review these topics</h3><p>Concepts to give another look.</p></div></header><div class="review-list" id="review-list" aria-live="polite"></div></article>
+      </div>
+    </section>
+    <footer class="page-footer"><span>QuizCraft</span><span>Rule-based study tools. No AI service or account required.</span></footer>
+  </main>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
